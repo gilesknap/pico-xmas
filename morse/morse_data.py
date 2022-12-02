@@ -1,6 +1,7 @@
 # timings for morse code
 # See https://morsecode.world/international/timing.html
-dit = 1200 / 25 * 0.001  # 1200ms / 25 dits = 92ms 25 WPM
+wpm = 13  # words per minute (for the reference word PARIS)
+dit = 1200 / wpm * 0.001  # 1200ms / 25 dits = 92ms
 dah = dit * 3
 dit_space = dit
 char_space = dit * 3
