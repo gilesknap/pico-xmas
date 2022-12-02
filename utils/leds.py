@@ -2,7 +2,11 @@ from time import sleep
 
 from machine import Pin
 
+# Set up our LED names and GPIO pin numbers
 onboardLED = Pin(25, Pin.OUT)
+red = Pin(18, Pin.OUT)
+amber = Pin(19, Pin.OUT)
+green = Pin(20, Pin.OUT)
 
 
 def led_on(period=0.0):
