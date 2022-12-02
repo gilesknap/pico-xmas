@@ -11,7 +11,7 @@ led_bits = [red, amber, green, onboardLED]
 
 while True:  # Keep on counting forever
 
-    # count from 0 to 15 (2^4 using 4 LEDs)
+    # count from 0 to 15 (2^4 values including 0, using 4 LEDs)
     for num in range(16):
         # convert to binary string but remove '0b' from the beginning
         binary = bin(num)[2:]
