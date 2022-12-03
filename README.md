@@ -53,3 +53,13 @@ follows
 - ONBOARD = 1
 
 Code [02_count.py](02_count.py)
+
+# Day 3 Project
+
+[Hardware setup for day 3](https://thepihut.com/blogs/raspberry-pi-tutorials/maker-advent-calendar-day-3-bashing-buttons)
+
+Light combinations of LEDs through combinations of button presses.
+
+Code [03_buttons.py](03_buttons.py)
+
+
