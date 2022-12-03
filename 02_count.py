@@ -28,3 +28,6 @@ def count_led(pause=0.5):
                 led_bits[bit].value(int(binary[bit]))
 
             sleep(pause)
+
+
+count_led()
