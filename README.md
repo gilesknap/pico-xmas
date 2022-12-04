@@ -32,13 +32,13 @@ If you clone this project it already includes the necessary extensions.
 # Day 1 Project
 These projects are split into multiple modules for reuse and readability.
 First upload all the project files. Then execute the desired numbered entry
-module e.g. 01_start_morse.py.
+module e.g. d01_start_morse.py.
 
 [Hardware setup for day 1](https://thepihut.com/blogs/raspberry-pi-tutorials/maker-advent-calendar-day-1-getting-started)
 
 Play any phrase in morse code on the onboard LED.
 
-Code [01_start_morse.py](01_start_morse.py)
+Code [d01_start_morse.py](01_start_morse.py)
 
 # Day 2 Project
 
@@ -52,7 +52,7 @@ follows
 - GREEN = 2
 - ONBOARD = 1
 
-Code [02_count.py](02_count.py)
+Code [d02_count.py](d02_count.py)
 
 # Day 3 Project
 
@@ -60,6 +60,6 @@ Code [02_count.py](02_count.py)
 
 Light combinations of LEDs through combinations of button presses.
 
-Code [03_buttons.py](03_buttons.py)
+Code [d03_buttons.py](d03_buttons.py)
 
 

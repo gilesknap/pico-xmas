@@ -3,9 +3,6 @@ import time
 
 from utils.leds import amber, green, onboardLED, red
 
-counter = 1  # Set the counter to 1
-
-
 # assign LEDs to binary digits LSB to MSB
 led_bits = [green, amber, red, onboardLED]
 
