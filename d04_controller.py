@@ -16,8 +16,8 @@ class PotModes:
 
 class Controller:
     """
-    Run a Binary counter in the background and monitor inputs to control the counter
-    as follows:
+    Run a Binary counter that lights 4 LEDs in a background thread.
+    Monitor inputs to control the counters follows:
 
     button 1: toggle between speed and brightness control
     button 2: toggle direction of the counter
