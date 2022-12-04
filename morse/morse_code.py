@@ -1,16 +1,16 @@
 from time import sleep
 
 from morse.morse_data import char_space, code, dah, dit, dit_space, word_space
-from utils.leds import led_on
+from utils.leds import onboardLED
 
 
 def dot():
-    led_on(dit)
+    onboardLED.blink(dit)
     sleep(dit_space)
 
 
 def dash():
-    led_on(dah)
+    onboardLED.blink(dah)
     sleep(dit_space)
 
 

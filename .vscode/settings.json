@@ -12,6 +12,7 @@
     "picowgo.openOnStart": true,
     "cSpell.words": [
         "GPIO",
-        "leds"
+        "leds",
+        "Pico"
     ]
 }

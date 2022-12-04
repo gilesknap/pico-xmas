@@ -5,24 +5,21 @@ from machine import ADC, PWM, Pin
 
 from utils.count import BinCounter
 
-# Set up the potentiometer on ADC pin 27
-potentiometer = ADC(Pin(27))
+# get all the GPIO pins used for the LEDs
+all_leds = BinCounter.led_bits
+all_pw
 
-# Set up the LED pin with PWM
-led = PWM(Pin(18))
-
-# Set the PWM Frequency
+# Set the PWM Frequency for all LED pins
 # Sets how often to switch the power between on and off for the LED
-led.freq(1000)
-
-# Create a variable for our reading
-reading = 0
+for led in all_leds:
+    pwm = PWM(led)
+    pwm.freq(1000)
 
 
 b = BinCounter()
 b.start()
 
-while False:  # Run forever
+while True:  # Run forever
 
     reading = (
         potentiometer.read_u16()
@@ -34,4 +31,4 @@ while False:  # Run forever
     # The duty cycle tells the LED for how long it should be on each time
     led.duty_u16(reading)
 
-    time.sleep(0.01)  # A really short delay
+    time.sleep(0.01)

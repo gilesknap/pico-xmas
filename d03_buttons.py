@@ -1,7 +1,7 @@
 # Imports
 import time
 
-from utils.buttons import button1, button2, button3
+from utils.inputs import button1, button2, button3
 from utils.leds import amber, green, onboardLED, red
 
 print("Press a button to turn on an LED")
