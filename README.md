@@ -66,4 +66,36 @@ Light combinations of LEDs through combinations of button presses.
 
 Code [d03_buttons.py](d03_buttons.py)
 
+# Day 4 Project
 
+[Hardware setup for day 4](https://thepihut.com/blogs/raspberry-pi-tutorials/maker-advent-calendar-day-4-amazing-analogue)
+
+Today I have combined the potentiometer and switches onto a single breadboard which is a little deviation from
+the PiHut instructions. My changes are:
+
+- move the switches up to one end of the board to make room
+- also move their wires accordingly
+- put the potentiometer at the other end of the board and wire as per PiHut, except
+- take the 3.3v power from the power rail on the left of the main board.
+
+See this image for details
+
+![image](https://user-images.githubusercontent.com/964827/205515981-920f1e4e-72ad-4f05-aceb-f9c60e8026f9.png)
+
+This project combines everything we have used so far plus demos a few more advanced features of MicorPython:
+- multi threaded code
+- use of classes
+
+Description:
+
+    Run a Binary counter that lights 4 LEDs in a background thread.
+    Monitor inputs to control the counters follows:
+
+    button 1: toggle between speed and brightness control
+    button 2: toggle direction of the counter
+    button 3: terminate the program
+    potentiometer: control speed or brightness depending on the mode set by button 1
+
+
+
+Code [d04_controller.py](d04_controller.py)
