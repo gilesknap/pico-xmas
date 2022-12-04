@@ -1,4 +1,4 @@
-from machine import ADC, PWM, Pin
+from machine import ADC, Pin
 
 # Set up our button names and GPIO pin numbers
 # Also set pins as inputs and use pull downs
