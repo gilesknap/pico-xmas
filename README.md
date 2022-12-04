@@ -16,15 +16,19 @@ Followed by a reboot (logout is not enough)
 For this project I have used vscode with this extension https://marketplace.visualstudio.com/items?itemName=paulober.pico-w-go.
 
 This gives quite a nice experience compared to Thonny (see below).
-If you clone this project it already includes the necessary extensions.
+If you clone this project it already includes the necessary extensions when
+opened in vscode.
 
-- Many of the commands for this extension are in the Command Pallette:
-  ctrl-shift-P -> pico.
-- To upload the project to your pico or execute a single file use right click
-  in the project explorer.
-- To start your own new project ctrl-shift-P -> Pico-W-Go -> Configure Project.
+Note that you can access the functions of the extension using the new 
+commands that appear in the vscode status like this:
+![image](https://user-images.githubusercontent.com/964827/205506367-4db0adbb-f2d7-437a-9ea3-e02ca7f5e977.png)
+
 - With a pico project open you should automatically get a terminal linked to
   the pico when you plug it in to USB.
+- To upload the project to your pico or execute a single file use right click
+  in the project explorer. You will see two new options 'Run Current File' and 
+  'Upload Project'
+- To start your own new project ctrl-shift-P -> Pico-W-Go -> Configure Project.
 
 ![image](https://user-images.githubusercontent.com/964827/205357295-423a5b94-c466-457b-9a7d-2a4a2993d984.png)
 
