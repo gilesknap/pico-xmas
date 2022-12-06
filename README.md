@@ -150,4 +150,5 @@ Today's code does the following:
 
 
 Code [d06_photo_t.py](d06_photo_t.py)
+![image](https://user-images.githubusercontent.com/964827/206023165-11f5ab33-420a-4482-8de1-34b1f8645e5c.png)
 
