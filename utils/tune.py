@@ -3,8 +3,12 @@ import time
 from hardware.advent import buzzer
 
 
-# Create our library of tone variables
-class Notes:
+class Tune:
+    """
+    A class to play tunes on the buzzer
+    """
+
+    # Create our library of tone variables
     A = 440
     As = 466
     B = 494
@@ -18,24 +22,32 @@ class Notes:
     G = 784
     Gs = 830
 
+    def __init__(self, tune: list, volume: int = 1000):
+        """setup a Tune object with a list of notes and a volume"""
+        self.tune = tune
+        self.volume = volume
 
-# Create our function with arguments
-def play_tone(note: int, length: int, gap: int, volume: int = 1000):
-    buzzer.duty_u16(volume)
-    buzzer.freq(note)
-    time.sleep(length)
-    buzzer.duty_u16(0)
-    time.sleep(gap)
+    def play_tone(self, note: int, length: int, gap: int):
+        """play a tone for a given length of time and pause afterwards"""
+        buzzer.duty_u16(self.volume)
+        buzzer.freq(note)
+        time.sleep(length)
+        buzzer.duty_u16(0)
+        time.sleep(gap)
 
+    def play_tune_once(self):
+        """play a tune"""
+        for element in self.tune:
+            if isinstance(element, str):
+                print(element)
+            else:
+                note, length, gap = element
+                self.play_tone(note, length, gap)
 
-# play the sequence of tones
-def play_tune(tune: list):
-    for element in tune:
-        if isinstance(element, str):
-            print(element)
-        else:
-            note, length, gap = element
-            play_tone(note, length, gap)
+        # buzzer off
+        buzzer.duty_u16(0)
 
-    # buzzer off
-    buzzer.duty_u16(0)
+    def repeat_tune(self, repeat: int = 1):
+        """play a tune a given number of times"""
+        for _ in range(repeat):
+            self.play_tune_once()
