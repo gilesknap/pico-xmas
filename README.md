@@ -19,16 +19,25 @@ This gives quite a nice experience compared to Thonny (see below).
 If you clone this project it already includes the necessary extensions when
 opened in vscode.
 
-Note that you can access the functions of the extension using the new 
+Note that you can access the functions of the extension using the new
 commands that appear in the vscode status like this:
 ![image](https://user-images.githubusercontent.com/964827/205506367-4db0adbb-f2d7-437a-9ea3-e02ca7f5e977.png)
 
 - With a pico project open you should automatically get a terminal linked to
   the pico when you plug it in to USB.
 - To upload the project to your pico or execute a single file use right click
-  in the project explorer. You will see two new options 'Run Current File' and 
+  in the project explorer. You will see two new options 'Run Current File' and
   'Upload Project'
 - To start your own new project ctrl-shift-P -> Pico-W-Go -> Configure Project.
+
+WARNING: there seems to be a bug with upload hanging when sending lots of files
+to get around this simply hit ctrl-C while focused on the Terminal Window when
+you see the upload process stick on a file. If you keep this up, all the files
+will upload OK.
+
+WARNING: occasionally things stop working. Usually ctrl-C will help, but when
+it does not use the Hard Reset function from 'All Commands' on the
+vscode status bar.
 
 ![image](https://user-images.githubusercontent.com/964827/205357295-423a5b94-c466-457b-9a7d-2a4a2993d984.png)
 
@@ -99,3 +108,40 @@ Description:
 
 
 Code [d04_controller.py](d04_controller.py)
+
+
+# Day 5 Project
+
+[Hardware setup for day 5](https://thepihut.com/blogs/raspberry-pi-tutorials/maker-advent-calendar-day-5-hear-my-code)
+
+Today I have encoded the song 'We Wish You a Merry XMas' with lyrics using
+a list and tuples.
+
+Code [d05_music.py](d05_music.py)
+
+# Day 6 Project
+
+[Hardware setup for day 6](https://thepihut.com/blogs/raspberry-pi-tutorials/maker-advent-calendar-day-6-looking-for-light)
+
+Today I have combined the new light sensor with everything from previous days.
+
+To do this you need to cram all of the components on the same breadboard.
+I'm pretty sure I'm going to run out of space if I try to keep this up until
+day 12.
+
+I'll leave it up to you to work out how to do the component layout, but will
+enclose a picture of mine to give an idea of how to do it.
+
+Today's code does the following:
+
+- Monitors the light level
+- Converts light level to a 4 bit value (0 - 15)
+- Displays the light level in binary on the 4 LEDs
+- Plays 'We Wish You a Merry XMas'
+- With Lyrics!
+- With volume controlled by the potentiometer
+- Uses buttons to start and stop everything
+
+
+Code [d06_photo_t.py](d06_photo_t.py)
+
