@@ -1,7 +1,7 @@
 from time import sleep
 
+from hardware.advent import onboardLED
 from morse.morse_data import char_space, code, dah, dit, dit_space, word_space
-from utils.leds import onboardLED
 
 
 def dot():

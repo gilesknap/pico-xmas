@@ -1,35 +1,18 @@
-# Imports
 import time
 
-from utils.leds import amber, green, onboardLED, red
-
-# assign LEDs to binary digits LSB to MSB
-led_bits = [green, amber, red, onboardLED]
+from utils.count import BinCounter
 
 
-def count_led(pause=0.2, iterations=1, silent=False):
+def count_led(iterations=15, pause=0.5, forwards=True, silent=False):
     start_time = time.time()  # Get the current time
 
+    counter = BinCounter(forwards=forwards, silent=silent)
+
     for num in range(iterations):  # Loop 16 times
+        counter.count_led()  # Count one
+        time.sleep(pause)
 
-        # count from 0 to 15 (2^4 values including 0, using 4 LEDs)
-        for num in range(16):
-            # convert to binary string but remove '0b' from the beginning
-            binary = bin(num)[2:]
-            # pad the left of the binary value with zeros
-            binary = "%04d" % int(binary)
-            # print the number and it's 4 digit binary equivalent
-            if not silent:
-                print(f"{num} = binary {binary}")
-
-            # loop over the 4 LED bits
-            for bit, led_bit in enumerate(led_bits):
-                # set the LED according to its equivalent position in the binary string
-                led_bits[bit].value(int(binary[bit]))
-
-            time.sleep(pause)
-
-    interval = time.time() - start_time  # Get the time since we started
+    interval = time.time() - start_time  # Calculate the time taken
     print(f"Counted from 0 to 15 {iterations} times in {interval} seconds")
 
 

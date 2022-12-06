@@ -1,8 +1,8 @@
-# Imports (including PWM and ADC)
 import time
 
+from hardware.advent import button1, button2, button3, potentiometer
+from utils.background import Background
 from utils.count import BinCounter
-from utils.inputs import button1, button2, button3, potentiometer
 
 # get all the GPIO pins used for the LEDs
 all_leds = BinCounter.led_bits
@@ -31,7 +31,8 @@ class Controller:
 
         # create an instance of the Binary Counter class and run it in the background
         self.counter = BinCounter()
-        self.counter.start()
+        self.background = Background()
+        self.background.start(self.counter.count_led)
 
     def await_release(self, button):
         # use this to debounce the buttons
@@ -48,7 +49,7 @@ class Controller:
             if self.mode == PotModes.Speed:
                 # speeds from 2/sec to 500/sec (+1 avoids div by zero)
                 thousand_values = pot_value / 65535 * 1000 + 1
-                self.counter.pause = 2 / thousand_values
+                self.background.pause = 2 / thousand_values
             elif self.mode == PotModes.Brightness:
                 # set the brightness of the LEDs
                 for led in all_leds:
@@ -75,7 +76,7 @@ class Controller:
             # terminate the program when button3 is pressed
             if button3.value():
                 print("Stopping everything")
-                self.counter.stop()
+                self.background.stop()
                 self.running = False
                 self.await_release(button3)
 

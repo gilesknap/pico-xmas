@@ -19,39 +19,37 @@ class Led:
         self.pwm.duty_u16(0)
 
     def on(self, period=0.0):
-        # turn on the LED at the current brightness
+        """turn on the LED at the current brightness"""
         self.pwm.duty_u16(self.power)
 
     def off(self):
+        """turn off the LED"""
         self.pwm.duty_u16(0)
 
     def value(self, value):
-        # set the LED on or off based on argument value
+        """set the LED on or off based on argument value"""
         if value:
             self.on()
         else:
             self.off()
 
     def brightness(self, value=65535):
+        """set the brightness of the LED"""
         self.power = value
         # if the LED is already on then change the brightness
         if self.pwm.duty_u16() > 0:
             self.on()
 
     def blink(self, period=0.5, count=1):
+        """blink the LED for count times with period seconds between on and off"""
         for step in range(count):
             self.on()
             sleep(period)
             self.off()
+            # don't pause after the last blink
             if step < count - 1:
                 sleep(period)
 
     def __repr__(self):
+        """return a string representation of the LED"""
         return f"Led({self.pin})"
-
-
-# Set up our LED names and GPIO pin numbers
-onboardLED = Led(25)
-red = Led(18)
-amber = Led(19)
-green = Led(20)
