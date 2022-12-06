@@ -30,9 +30,12 @@ def play_tone(note: int, length: int, gap: int, volume: int = 1000):
 
 # play the sequence of tones
 def play_tune(tune: list):
-    for note, length, gap in tune:
-        print(note, length, gap)
-        play_tone(note, length, gap)
+    for element in tune:
+        if isinstance(element, str):
+            print(element)
+        else:
+            note, length, gap = element
+            play_tone(note, length, gap)
 
     # buzzer off
     buzzer.duty_u16(0)
