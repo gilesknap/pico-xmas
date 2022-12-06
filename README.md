@@ -117,6 +117,12 @@ Code [d04_controller.py](d04_controller.py)
 Today I have encoded the song 'We Wish You a Merry XMas' with lyrics using
 a list and tuples.
 
+I used [this page](https://www.bethsnotesplus.com/2014/07/we-wish-you-merry-christmas.html)
+to populate the list of notes.
+
+Perhaps someone more musical than I would like to contribute the rest of the
+song?
+
 Code [d05_music.py](d05_music.py)
 
 # Day 6 Project
