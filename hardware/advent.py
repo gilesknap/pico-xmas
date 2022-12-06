@@ -33,3 +33,7 @@ potentiometer = ADC(Pin(27))
 # plug buzzer into GP12 - physical pins 16 and 18
 # OR use Pin(13) for the PiHut wiring
 buzzer = PWM(Pin(12))  # Set the buzzer to PWM mode
+
+
+# Define pin for our sensor
+light_sensor = ADC(Pin(26))
