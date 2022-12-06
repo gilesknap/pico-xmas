@@ -14,6 +14,7 @@ class Background:
 
     def _runner(self):
         # the worker loop
+        time.sleep(0.001)  # yield to other threads before running the function
         while self._running:
             self._function()
             if not self._repeat:
@@ -22,12 +23,12 @@ class Background:
 
     def start(self, function, repeat=True, pause=0.5):
         # start the worker running in the background
-        print("Starting background task")
         self._running = True
         self._repeat = repeat
         self._function = function
         self.pause = pause
         start_new_thread(self._runner, ())
+        print("Started background task")
 
     def stop(self):
         # cause the worker loop to exit

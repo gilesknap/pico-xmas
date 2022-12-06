@@ -22,10 +22,11 @@ class Tune:
     G = 784
     Gs = 830
 
-    def __init__(self, tune: list, volume: int = 1000):
+    def __init__(self, tune: list, volume: int = 1000, lyrics=True):
         """setup a Tune object with a list of notes and a volume"""
         self.tune = tune
         self.volume = volume
+        self.lyrics = lyrics
 
     def play_tone(self, note: int, length: int, gap: int):
         """play a tone for a given length of time and pause afterwards"""
@@ -38,9 +39,9 @@ class Tune:
     def play_tune_once(self):
         """play a tune"""
         for element in self.tune:
-            if isinstance(element, str):
+            if isinstance(element, str) and self.lyrics:
                 print(element)
-            else:
+            elif isinstance(element, tuple):
                 note, length, gap = element
                 self.play_tone(note, length, gap)
 

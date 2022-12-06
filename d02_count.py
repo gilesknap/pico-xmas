@@ -13,7 +13,7 @@ def count_led(iterations=15, pause=0.5, forwards=True, silent=False):
         time.sleep(pause)
 
     interval = time.time() - start_time  # Calculate the time taken
-    print(f"Counted from 0 to 15 {iterations} times in {interval} seconds")
+    print(f"Counted {iterations} times in {interval} seconds")
 
 
 count_led()
