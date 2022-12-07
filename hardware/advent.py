@@ -6,7 +6,8 @@ Note for my projects I have tried to use all components
 simultaneously, so I have used different GPIO pins to the
 ones in the PiHut instructions for the following items:
 
-- Buzzer: GP12 - physical pins 16 and 18
+- Buzzer: GP12 physical pin 16
+- pir_sensor: GP28 physical pin 35 (ADC2)
 """
 
 from machine import ADC, PWM, Pin
@@ -29,11 +30,15 @@ button3 = Pin(3, Pin.IN, Pin.PULL_DOWN)
 potentiometer = ADC(Pin(27))
 
 # Set up the Buzzer pin as PWM
-# WARNING: this is different from PiHut Instructions
-# plug buzzer into GP12 - physical pins 16 and 18
+# DIFFERENT FROM PiHut instructions!!
 # OR use Pin(13) for the PiHut wiring
 buzzer = PWM(Pin(12))  # Set the buzzer to PWM mode
 
 
-# Define pin for our sensor
+# Define pin for light sensor
 light_sensor = ADC(Pin(26))
+
+# Define pin for PIR sensor
+# DIFFERENT FROM PiHut instructions!!
+# OR use Pin(26) for the PiHut wiring
+pir_sensor = Pin(28, Pin.IN, Pin.PULL_DOWN)

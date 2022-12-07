@@ -152,3 +152,16 @@ Today's code does the following:
 Code [d06_photo_t.py](d06_photo_t.py)
 ![image](https://user-images.githubusercontent.com/964827/206023165-11f5ab33-420a-4482-8de1-34b1f8645e5c.png)
 
+# Day 7 Project
+
+[Hardware setup for day 7](https://thepihut.com/blogs/raspberry-pi-tutorials/maker-advent-calendar-day-7-monitoring-motion)
+
+Today I've just pretty much copied the alarm code from PiHut. I thought it would
+be interesting to give the alarm a disarm code to punch in on the buttons,
+but no time today.
+
+I have still crammed all the components on to the existing breadboard and
+had to use ADC2 (pin 28) instead of pin 31. I moved the switches to one side of
+the mini-board to make space.
+
+Code [d07_pir.py](d07_pir.py)
