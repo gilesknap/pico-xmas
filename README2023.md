@@ -52,7 +52,7 @@ For today I again reused some of the modules from last year. We have made the
 new LED and the onboard LED flash simultaneously at different rates using
 MicroPython's `_thread` module.
 
-See the code at [e03_buttons.py](e03_buttons.py).
+See the code at [e02_led.py](e02_led.py).
 
 I discovered that the MicroPython thread module only supports one extra thread
 other than the main thread. This is a bit limiting so for tomorrow I'm going to
