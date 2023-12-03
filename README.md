@@ -14,7 +14,9 @@ Note to make this work on linux requires:
 sudo adduser <your_user_name> dialout
 ```
 
-Followed by a reboot (logout is not enough)
+Followed by a reboot (logout is not enough). This group membership gives your
+user access to the USB serial port that the PICO uses to communicate with the
+host.
 
 ## Install MicroPython
 
@@ -32,10 +34,16 @@ Using this step after setting `dialout` group membership I was found that
 the vscode extension attached immediately as soon as the PICO rebooted.
 
 ## Recommended developer tools
-For this project I have used vscode with this extension
+For this project I have used vscode which is an excellent integrated
+development environments that supports working with any programming language
+that you choose. To get vscode installed see
+https://code.visualstudio.com/download
+
+To work with vscode, the RPI Pico and MicroPython, this excellent plugin
+makes everything work together nicely:
 https://marketplace.visualstudio.com/items?itemName=paulober.pico-w-go.
 
-This gives quite a nice experience compared to Thonny (see below).
+It gives quite a nice experience compared to Thonny (see below).
 If you clone this project it already includes the necessary extensions when
 opened in vscode.
 
@@ -45,22 +53,19 @@ commands that appear in the vscode status like this:
 
 - With a pico project open you should automatically get a terminal linked to
   the pico when you plug it in to USB.
-- To upload the project to your pico or execute a single file use right click
-  in the project explorer. You will see two new options 'Run Current File' and
-  'Upload Project'
-- To start your own new project ctrl-shift-P -> Pico-W-Go -> Configure Project.
+- To upload the project to your pico or execute right click on the 'pico-xmas'
+  project folder in the explorer (pane to the left of the screen )and select
+  'Upload project to the Pico'.
+- To run your code, select the file you want to run and click the '> Run' button
+  on the status bar at the bottom.
 
-WARNING: there seems to be a bug with upload hanging when sending lots of files
-to get around this simply hit ctrl-C while focused on the Terminal Window when
-you see the upload process stick on a file. If you keep this up, all the files
-will upload OK.
-
-WARNING: occasionally things stop working. Usually ctrl-C will help, but when
+UPDATE: all issues with uploading code to the Pico seem to have been solved
+since 2022 and everything works smoothly. If the extension does seem to stop
+working, usually ctrl-C will help, but when
 it does not use the Hard Reset function from 'All Commands' on the
 vscode status bar.
 
 ![image](https://user-images.githubusercontent.com/964827/205357295-423a5b94-c466-457b-9a7d-2a4a2993d984.png)
-
 
 I've now broken the README up into the the two separate years:
 

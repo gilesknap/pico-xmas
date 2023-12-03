@@ -18,7 +18,7 @@ class Led:
         # turn the LED off
         self.pwm.duty_u16(0)
 
-    def on(self, period=0.0):
+    def on(self):
         """turn on the LED at the current brightness"""
         self.pwm.duty_u16(self.power)
 
@@ -40,8 +40,12 @@ class Led:
         if self.pwm.duty_u16() > 0:
             self.on()
 
-    def blink(self, period=0.5, count=1):
+    def blink(self, period=0.5, count=1, secs=0.0):
         """blink the LED for count times with period seconds between on and off"""
+        if secs > 0:
+            # calculate the number of blinks based on the period and secs
+            count = int(secs / period)
+            print(f"count = {count}")
         for step in range(count):
             self.on()
             sleep(period)
