@@ -7,22 +7,6 @@ from machine import Pin
 pin_regex = re.compile(r"GPIO(\d+)")
 
 
-def pin_number(pin: Pin):
-    """
-    Crazily enough, its a bit hard to get the pin number from a Pin object
-    But if you use repr() on the Pin object you get a string like this:
-    - Pin(GPIO2, mode=IN, pull=PULL_DOWN)
-    So we can use a regex to extract the pin number from that string.
-
-    It turns out that we don't really need this because I have registered
-    a callback for each button. But we keep it for debugging purposes.
-    """
-    if match := pin_regex.search(repr(pin)):
-        return int(match.group(1))
-
-    return -1
-
-
 class Button:
     """
     A class to represent a button attached to a GPIO on the Pico.
@@ -60,7 +44,7 @@ class Button:
 
         if Button.debug:
             print(
-                f"Button._callback: pressed={self.pressed}, "
+                f"_callback: {self.name} pressed={self.pressed}, "
                 + f"value={value}, num={self.num}"
             )
 
@@ -72,7 +56,7 @@ class Button:
             if diff > self.debounce_ms:
                 self.last_state_change = now
                 self.pressed = value
-                print(self)
+                self.handler(self)
             else:
                 if Button.debug:
                     print("{self.name} debounce")
@@ -91,9 +75,10 @@ class Button:
         while self.pressed:
             await asyncio.sleep(0.05)
 
-    def print_state(self):
+    @staticmethod
+    def print_state(button):
         """print the state of the button"""
-        print(self)
+        print(button)
 
     def __repr__(self):
         """return a string representation of the button"""
@@ -104,8 +89,8 @@ if __name__ == "__main__":
     # test code
     async def main():
         print("Testing Button class with pins 2,3")
-        button1 = Button(2, "Red", debug=False)
-        button2 = Button(3, "Green", debug=False)
+        button1 = Button(2, "Red")
+        button2 = Button(3, "Green", debug=True)
 
         print("Waiting for button 1 to be pressed")
         await button1.wait_for_press()

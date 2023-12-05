@@ -10,6 +10,11 @@ onboard_led = Led(25)
 # day 2 LED
 red_led = Led(14)
 
+
 # day 3 buttons
-red_button = Button(pin_num=2)
-green_button = Button(pin_num=3)
+def red_button(callback=None):
+    return Button(pin_num=2, name="Red", handler=callback)
+
+
+def green_button(callback=None):
+    return Button(pin_num=3, name="Green", handler=callback)
