@@ -69,3 +69,19 @@ that performs a variety of different actions. I'm going to use asyncio to
 make everything nice and snappy.
 
 Work in Progress ...
+
+OK that took way longer than expected as I got caught up in finding out
+how interrupts work in MicroPython. So for today I have skipped the state
+machine and will come back to that later.
+
+Today's code demonstrates how to use interrupts to detect button presses. But
+also how to do background tasks using asyncio. So we have two different methods
+of parallel processing.
+
+If you run this code you should find that:
+
+- The green button enables and disables both LEDs
+- the red button toggles between flashing the LEDs and just having them on.
+
+
+See [e03_buttons.py](e03_buttons.py).
