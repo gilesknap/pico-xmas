@@ -9,23 +9,23 @@ class DoBlink:
     """
 
     def __init__(self, led, period_ms):
-        self.running = False
         self.led = led
         self.period_ms = period_ms
+        self.task = None
 
     async def blink(self):
-        while self.running:
+        while True:
             self.led.on()
             await asyncio.sleep(self.period_ms * 0.001)
             self.led.off()
             await asyncio.sleep(self.period_ms * 0.001)
 
     def start(self):
-        self.running = True
         self.task = asyncio.create_task(self.blink())
 
     def stop(self):
-        self.running = False
+        if self.task:
+            self.task.cancel()
 
 
 # global values shared by the event handlers
@@ -63,12 +63,13 @@ def switch_enabled(button):
 def change_leds():
     blink1.stop()
     blink2.stop()
-    onboard_led.on()
-    red_led.on()
     if ENABLED:
         if MODE == 1:
             blink1.start()
             blink2.start()
+        else:
+            onboard_led.on()
+            red_led.on()
     else:
         onboard_led.off()
         red_led.off()
