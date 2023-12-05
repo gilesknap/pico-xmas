@@ -13,6 +13,9 @@ def pin_number(pin: Pin):
     But if you use repr() on the Pin object you get a string like this:
     - Pin(GPIO2, mode=IN, pull=PULL_DOWN)
     So we can use a regex to extract the pin number from that string.
+
+    It turns out that we don't really need this because I have registered
+    a callback for each button. But we keep it for debugging purposes.
     """
     if match := pin_regex.search(repr(pin)):
         return int(match.group(1))
@@ -28,8 +31,6 @@ class Button:
     buttons at the same time.
     """
 
-    irq = None
-    callbacks = {}
     debug = False
 
     def __init__(
@@ -40,48 +41,55 @@ class Button:
         Button.debug = debug
         self.pin = Pin(pin_num, Pin.IN, Pin.PULL_DOWN)
         self.num = pin_num
-        if Button.irq is None:
-            Button.irq = self.pin.irq(
-                handler=Button._isr, trigger=Pin.IRQ_RISING | Pin.IRQ_FALLING
-            )
-        Button.callbacks[pin_num] = self._callback
+        self.irq = self.pin.irq(
+            handler=self._callback, trigger=Pin.IRQ_RISING | Pin.IRQ_FALLING
+        )
 
         self.debounce_ms = debounce_ms
-        self.last_press = time.ticks_ms()
+        self.last_state_change = time.ticks_ms()
 
         self.pressed = 0  # 0 = released, 1 = pressed
         self.handler = handler or self.print_state  # default handler prints state
         self.name = name
 
-    @classmethod
-    def _isr(cls, pin):
-        """
-        The interrupt handler that is called when any button is pressed.
-        """
-        num = pin_number(pin)
-        if cls.debug:
-            print(f"Button._isr num={num}, value={pin.value()} pin={pin}")
-        if num in cls.callbacks:
-            cls.callbacks[num]()
-
-    def _callback(self):
+    def _callback(self, _):
         """
         The callback function that is called when the button is pressed.
         """
-        print("Button._callback", self.pressed, self.num)
-        # debounce the button
-        now = time.ticks_ms()
-        diff = now - self.last_press
-        if diff > self.debounce_ms:
-            self.last_press = now
-            self.pressed = self.pin.value()
+        value = self.pin.value()
+
+        if Button.debug:
+            print(
+                f"Button._callback: pressed={self.pressed}, "
+                + f"value={value}, num={self.num}"
+            )
+
+        # only interested in transitions of button state
+        if value != self.pressed:
+            # debounce the button
+            now = time.ticks_ms()
+            diff = now - self.last_state_change
+            if diff > self.debounce_ms:
+                self.last_state_change = now
+                self.pressed = value
+                print(self)
+            else:
+                if Button.debug:
+                    print("{self.name} debounce")
 
     async def wait_for_press(self):
         """
         async monitoring of button state
         """
         while not self.pressed:
-            await asyncio.sleep(0.03)
+            await asyncio.sleep(0.05)
+
+    async def wait_for_release(self):
+        """
+        async monitoring of button state
+        """
+        while self.pressed:
+            await asyncio.sleep(0.05)
 
     def print_state(self):
         """print the state of the button"""
@@ -89,19 +97,22 @@ class Button:
 
     def __repr__(self):
         """return a string representation of the button"""
-        return (
-            f"{self.name} Button({self.pin}) is "
-            + f"{'pressed' if self.pressed else 'released'}"
-        )
+        return f"{self.name} " + f"{'pressed' if self.pressed else 'released'}"
 
 
 if __name__ == "__main__":
     # test code
     async def main():
         print("Testing Button class with pins 2,3")
-        button1 = Button(2, "Red", debug=True)
+        button1 = Button(2, "Red", debug=False)
+        button2 = Button(3, "Green", debug=False)
 
+        print("Waiting for button 1 to be pressed")
         await button1.wait_for_press()
-        print(button1)
+        await button1.wait_for_release()
+        print("Waiting for button 2 to be pressed")
+        await button2.wait_for_press()
+        await button2.wait_for_release()
+        print("Done")
 
     asyncio.run(main())
