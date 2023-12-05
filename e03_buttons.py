@@ -1,23 +1,20 @@
-# Imports
-import time
+import asyncio
 
-from machine import Pin
+from hardware.async2023 import green_button, onboard_led, red_button, red_led
 
-# Set up input pins
-red_button = Pin(2, Pin.IN, Pin.PULL_DOWN)
-green_button = Pin(3, Pin.IN, Pin.PULL_DOWN)
 
-# Set up output pins
-red_led = Pin(14, Pin.OUT)
+async def blink(led, period_ms):
+    while True:
+        led.on()
+        await asyncio.sleep(0.005)
+        led.off()
+        await asyncio.sleep(period_ms * 0.001)
 
-while True:
 
-    time.sleep(0.2)
+async def main(led1, led2):
+    asyncio.create_task(blink(led1, 700))
+    asyncio.create_task(blink(led2, 400))
+    await asyncio.sleep(30)
 
-    if red_button.value() == 1:
-        print("Light OFF")
-        red_led.value(0) # LED pin LOW
 
-    if green_button.value() == 1:
-        print("Light ON")
-        red_led.value(1) # LED pin HIGH
+asyncio.run(main(onboard_led, red_led))
