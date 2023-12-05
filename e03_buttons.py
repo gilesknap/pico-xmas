@@ -2,37 +2,9 @@ import asyncio
 
 from hardware.async2023 import green_button, onboard_led, red_button, red_led
 
-
-class DoBlink:
-    """
-    A class to blink an LED in the background using asyncio.
-    """
-
-    def __init__(self, led, period_ms):
-        self.led = led
-        self.period_ms = period_ms
-        self.task = None
-
-    async def blink(self):
-        while True:
-            self.led.on()
-            await asyncio.sleep(self.period_ms * 0.001)
-            self.led.off()
-            await asyncio.sleep(self.period_ms * 0.001)
-
-    def start(self):
-        self.task = asyncio.create_task(self.blink())
-
-    def stop(self):
-        if self.task:
-            self.task.cancel()
-
-
 # global values shared by the event handlers
 MODE = 0  # 0 = solid, 1 = blinking
 ENABLED = False
-blink1 = DoBlink(onboard_led, 700)
-blink2 = DoBlink(red_led, 400)
 
 
 # callback function for red button, toggles modes when it is pressed
@@ -61,12 +33,12 @@ def switch_enabled(button):
 # a function for switching the LEDs state. Call this when mode or enabled
 # flags have changed
 def change_leds():
-    blink1.stop()
-    blink2.stop()
+    onboard_led.stop()
+    red_led.stop()
     if ENABLED:
         if MODE == 1:
-            blink1.start()
-            blink2.start()
+            onboard_led.start(period_ms=500)
+            red_led.start(period_ms=300)
         else:
             onboard_led.on()
             red_led.on()

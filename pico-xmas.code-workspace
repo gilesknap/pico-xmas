@@ -2,6 +2,10 @@
 	"folders": [
 		{
 			"path": "."
+		},
+		{
+			"name": "Pico (W) Remote Workspace",
+			"uri": "pico:"
 		}
 	],
 	"settings": {
