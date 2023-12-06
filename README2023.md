@@ -56,27 +56,22 @@ See the code at [e02_led.py](e02_led.py).
 
 I discovered that the MicroPython thread module only supports one extra thread
 other than the main thread. This is a bit limiting so for tomorrow I'm going to
-take a look at asyncio. I was rather pleased to discover that MicroPython supports it, so we need to give that a whirl.
+take a look at asyncio. I was rather pleased to discover that MicroPython supports it, 
+so we need to give that a whirl.
 
 # Day 3 Project
 Today we get two buttons. The PiHut instructions are
 [here](https://thepihut.com/blogs/raspberry-pi-tutorials/let-it-glow-maker-advent-calendar-day-3-incredible-inputs)
 
-Now what interesting things can we do with two buttons and two LEDs?.
-
-I'm thinking that we should build a state machine controlled by the buttons,
-that performs a variety of different actions. I'm going to use asyncio to
-make everything nice and snappy.
-
-Work in Progress ...
-
 OK that took way longer than expected as I got caught up in finding out
-how interrupts work in MicroPython. So for today I have skipped the state
-machine and will come back to that later.
+how interrupts work in MicroPython. It's a bit weird because interupts on
+one pin seem to get reported on other pins as well *sometimes*. However I was
+able to eliminate any crosstalk by keeping the button state and only executing
+actions on transitions from pressed to released or vice versa.
 
 Today's code demonstrates how to use interrupts to detect button presses. But
 also how to do background tasks using asyncio. So we have two different methods
-of parallel processing.
+of parallel processing in the same project.
 
 If you run this code you should find that:
 
@@ -85,3 +80,31 @@ If you run this code you should find that:
 
 
 See [e03_buttons.py](e03_buttons.py).
+
+# Day 4 Project
+Today we added a 5 segment display. Hardware Setup is 
+[here](https://thepihut.com/blogs/raspberry-pi-tutorials/let-it-glow-maker-advent-calendar-day-4-brilliant-bar-graphs)
+
+For today I have continued in the theme of using asyncio to do 
+background processing. I created a class in [segmented.py](asyn/segmented.py) 
+that represents the interface to the relevant pins and allows us to
+do background counting in binary.
+
+The code that uses the new module is [e04_segmented.py](e04_segmented.py) don't 
+forget to upload the project before running this file as it relies on the 
+above module which would not yet be on your pico.
+
+Today I also tidied up the look of my breadboard by purchasing a jumper
+cable kit. The one I used was £6.99 from 
+[Amazon](https://www.amazon.co.uk/dp/B08PF2W1RF?psc=1&ref=ppx_yo2ov_dt_b_product_details)
+and it works quite well.
+
+This makes the board a bit more reliable because the cables don't get knocked out as
+easily.
+
+Here is the result, you may notice that I inverted the segmented LED to make the wiring 
+tidy. (The mapping from PIN to segment when viewed up this way is the same as it was)
+
+![image](https://github.com/gilesknap/pico-xmas/assets/964827/46e64c0b-d565-4e86-ac5d-ab2e23c94b1d)
+
+
