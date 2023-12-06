@@ -1,17 +1,11 @@
-import time
+import asyncio
 
-from machine import Pin
+from asyn.segmented import Segmented
 
-# Set up input pins
-redbutton = Pin(2, Pin.IN, Pin.PULL_DOWN)
-greenbutton = Pin(3, Pin.IN, Pin.PULL_DOWN)
+# create the Segmented display object
+s = Segmented()
+# start the background task that will count up in binary on the display
+s.start_count()
 
-# Set up LED pins
-seg1 = Pin(13, Pin.OUT)
-seg2 = Pin(12, Pin.OUT)
-seg3 = Pin(11, Pin.OUT)
-seg4 = Pin(10, Pin.OUT)
-seg5 = Pin(9, Pin.OUT)
-
-# Create a list of our LEDs
-segments = [seg1, seg2, seg3, seg4, seg5]
+# just wait for a long time and let the background task do its thing
+asyncio.run(s._counter(500000))
