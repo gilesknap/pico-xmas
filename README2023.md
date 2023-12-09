@@ -134,7 +134,17 @@ are phsical pins 34 and 32. The remaining pins are connected as per the PiHut
 instructions
 [here](https://thepihut.com/blogs/raspberry-pi-tutorials/let-it-glow-maker-advent-calendar-day-6-see-the-rgb)
 
-See the image below for the details of the wiring.
+See the image below for the details of the wiring. From this point on I'm using an
+extra breadboard from last year's kit. This is so I can fit all the components in
+without removing any previous days parts. If you don't have a spare board and
+want to follow along you could pick one up for £4 on 
+[Amazon](https://www.amazon.co.uk/400-Point-Solderless-PCB-Breadboard/dp/B013EW663K/ref=sr_1_18?keywords=breadboard&qid=1702119593&sr=8-18)
+
+My code today is a simple single threaded script that pulses the lights 
+in a fashion that I found pleaseing. see [e05_rgb.py](e05_rgb.py)
+
+![image](https://github.com/gilesknap/pico-xmas/assets/964827/1ecd304d-c378-47de-8994-b300e753e157)
+
 
 
 
