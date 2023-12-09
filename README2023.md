@@ -137,14 +137,34 @@ instructions
 See the image below for the details of the wiring. From this point on I'm using an
 extra breadboard from last year's kit. This is so I can fit all the components in
 without removing any previous days parts. If you don't have a spare board and
-want to follow along you could pick one up for £4 on 
+want to follow along you could pick one up for £4 on
 [Amazon](https://www.amazon.co.uk/400-Point-Solderless-PCB-Breadboard/dp/B013EW663K/ref=sr_1_18?keywords=breadboard&qid=1702119593&sr=8-18)
 
-My code today is a simple single threaded script that pulses the lights 
+My code today is a simple single threaded script that pulses the lights
 in a fashion that I found pleaseing. see [e05_rgb.py](e05_rgb.py)
 
 ![image](https://github.com/gilesknap/pico-xmas/assets/964827/1ecd304d-c378-47de-8994-b300e753e157)
 
+# Day 7 Project
+Today we get a sliding potentiometer. For today I'm just using PiHut's
+code because I'm working on the 'all things' project.
 
+Note, due to keeping everything on the board I have used GPIO 26 instead of
+GPIO 25 as in the PiHut instructions.
 
+See PiHut instructions
+[here](https://thepihut.com/blogs/raspberry-pi-tutorials/let-it-glow-maker-advent-calendar-day-7-time-to-slide)
 
+My code with the change to GPIO 26 is [e06_pot.py](e06_pot.py)
+
+# Day 8 Project
+Today we get a ring of RGB LEDs.
+
+Here I'm connecting the ring control to GPIO15 physical pin 20
+instead of GPIO2.
+
+# Day 9 Project
+Today we get a temp and humidity sensor.
+
+I'm using GP19 (physical pin 25) for I2C SCL and GP18 (physical pin 24) for
+I2C SDA.
