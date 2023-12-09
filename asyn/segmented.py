@@ -24,6 +24,7 @@ class Segmented:
         self.stop = 31
         self.step = 1
         self.task = None
+        self.done = False
         self.period_ms = 500
 
     def set_value(self, value):
@@ -40,10 +41,16 @@ class Segmented:
             self.segments[i].value(mask[i])
 
     async def _counter(self, repeats):
+        self.done = False
         for _ in range(repeats):
             for i in range(self.start, self.stop + 1, self.step):
                 self.set_value(i)
                 await asyncio.sleep(self.period_ms * 0.001)
+        self.done = True
+
+    async def wait_for_done(self):
+        while not self.done:
+            await asyncio.sleep(0.1)
 
     def start_count(self, start=0, stop=31, step=1, period_ms=500, repeats=5):
         self.start = start

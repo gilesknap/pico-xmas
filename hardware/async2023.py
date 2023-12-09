@@ -22,8 +22,8 @@ segments = [seg1_led, seg2_led, seg3_led, seg4_led, seg5_led]
 
 # day 3 buttons
 def red_button(callback=None):
-    return Button(pin_num=2, name="Red", handler=callback)
+    return Button(pin_num=0, name="Red", handler=callback)
 
 
 def green_button(callback=None):
-    return Button(pin_num=3, name="Green", handler=callback)
+    return Button(pin_num=1, name="Green", handler=callback)

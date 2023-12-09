@@ -9,8 +9,8 @@ async def main():
     # start the background task that will count up in binary on the display
     s.start_count()
 
-    # just wait for a long time and let the background task do its thing
-    await asyncio.sleep(60000)
+    # just wait until the count is done
+    await s.wait_for_done()
 
 
 asyncio.run(main())

@@ -56,12 +56,20 @@ See the code at [e02_led.py](e02_led.py).
 
 I discovered that the MicroPython thread module only supports one extra thread
 other than the main thread. This is a bit limiting so for tomorrow I'm going to
-take a look at asyncio. I was rather pleased to discover that MicroPython supports it, 
+take a look at asyncio. I was rather pleased to discover that MicroPython supports it,
 so we need to give that a whirl.
 
 # Day 3 Project
 Today we get two buttons. The PiHut instructions are
 [here](https://thepihut.com/blogs/raspberry-pi-tutorials/let-it-glow-maker-advent-calendar-day-3-incredible-inputs)
+
+IMPORTANT: I have used pin 0 and 1 instead of 2 and 3 as the instructions,
+this is so I can fit everything up to day 5 on the board at once. If you want
+to use my code you should do the same, or change the values for Red and
+Green buttons in [hardware/async2023.py](hardware/async2023.py).
+
+To use my code unchanged plug the red button into physical pin 0 and the green button
+into physical pin 1. This is instead of pins 4 and 5 as in PiHut instructions.
 
 OK that took way longer than expected as I got caught up in finding out
 how interrupts work in MicroPython. It's a bit weird because interupts on
@@ -82,29 +90,51 @@ If you run this code you should find that:
 See [e03_buttons.py](e03_buttons.py).
 
 # Day 4 Project
-Today we added a 5 segment display. Hardware Setup is 
+Today we added a 5 segment display. Hardware Setup is
 [here](https://thepihut.com/blogs/raspberry-pi-tutorials/let-it-glow-maker-advent-calendar-day-4-brilliant-bar-graphs)
 
-For today I have continued in the theme of using asyncio to do 
-background processing. I created a class in [segmented.py](asyn/segmented.py) 
+For today I have continued in the theme of using asyncio to do
+background processing. I created a class in [segmented.py](asyn/segmented.py)
 that represents the interface to the relevant pins and allows us to
 do background counting in binary.
 
-The code that uses the new module is [e04_segmented.py](e04_segmented.py) don't 
-forget to upload the project before running this file as it relies on the 
+The code that uses the new module is [e04_segmented.py](e04_segmented.py) don't
+forget to upload the project before running this file as it relies on the
 above module which would not yet be on your pico.
 
 Today I also tidied up the look of my breadboard by purchasing a jumper
-cable kit. The one I used was £6.99 from 
+cable kit. The one I used was £6.99 from
 [Amazon](https://www.amazon.co.uk/dp/B08PF2W1RF?psc=1&ref=ppx_yo2ov_dt_b_product_details)
 and it works quite well.
 
 This makes the board a bit more reliable because the cables don't get knocked out as
 easily.
 
-Here is the result, you may notice that I inverted the segmented LED to make the wiring 
+Here is the result, you may notice that I inverted the segmented LED to make the wiring
 tidy. (The mapping from PIN to segment when viewed up this way is the same as it was)
 
 ![image](https://github.com/gilesknap/pico-xmas/assets/964827/46e64c0b-d565-4e86-ac5d-ab2e23c94b1d)
+
+# Day 5 Project
+Today we add a dip switch. I'm trying to keep all the components wire on the
+board so I have moved the dip switch over to the left of the two buttons.
+
+The wiring set up is still the same as the PiHut instructions
+[here](https://thepihut.com/blogs/raspberry-pi-tutorials/let-it-glow-maker-advent-calendar-day-5-switch-the-dip)
+
+I've not written any new code for these. But planning on making a project that
+uses as many of the items at once as far as possible.
+
+# Day 6 Project
+Today we get two RGB LEDs. To keep everything so far I have added the breadboard
+from last year below the pico. I'm installing the RGB LEDs on that breadboard.
+
+To allow this I have connected their GPIO inputs to GPIO27 and GPIO28. These
+are phsical pins 34 and 32. The remaining pins are connected as per the PiHut
+instructions
+[here](https://thepihut.com/blogs/raspberry-pi-tutorials/let-it-glow-maker-advent-calendar-day-6-see-the-rgb)
+
+See the image below for the details of the wiring.
+
 
 
