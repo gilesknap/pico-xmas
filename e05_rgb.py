@@ -8,15 +8,35 @@ from neopixel import NeoPixel
 GRBled1 = NeoPixel(Pin(28), 1)
 GRBled2 = NeoPixel(Pin(27), 1)
 
-# set up some tuples for the colours to make the code more readable
-red = (1, 0, 0)
-green = (0, 1, 0)
-blue = (0, 0, 1)
-colours = [red, green, blue]
+# set up some tuples for the colours
+white = 240, 140, 255  # White-ish!
+red = 0, 255, 0
+green = 255, 0, 0
+blue = 0, 0, 255
+yellow = 255, 175, 150
+orange = 238, 223, 105
+pink = 150, 150, 200
+purple = 40, 100, 255
+ice_blue = 150, 25, 200
+unicorn = 175, 150, 255
+bogey = 215, 100, 0
+colours = [
+    white,
+    red,
+    green,
+    blue,
+    yellow,
+    orange,
+    pink,
+    purple,
+    ice_blue,
+    unicorn,
+    bogey,
+]
 
 # tuples for making ascending and descending ranges for 0-255 with no overlaps
-ascend = (1, 255, 1)
-descend = (254, 0, -1)
+ascend = (0, 255, 1)
+descend = (255, 0, -1)
 
 
 def set_leds(led1, led2, colour1, colour2, factor):
@@ -25,18 +45,22 @@ def set_leds(led1, led2, colour1, colour2, factor):
     set led2 to colour 2 with inverse brightness factor
     """
     inverse_factor = 255 - factor
-    brightness = tuple(factor * colour1[i] for i in range(3))
-    inverse_brightness = tuple(inverse_factor * colour2[i] for i in range(3))
+    brightness = tuple(factor / 255 * colour1[i] for i in range(3))
+    inverse_brightness = tuple(inverse_factor / 255 * colour2[i] for i in range(3))
 
-    led1.fill(brightness)
-    led2.fill(inverse_brightness)
+    # we did some floating point maths, so we need to convert back to integers
+    b1 = tuple(map(int, brightness))
+    b2 = tuple(map(int, inverse_brightness))
+    # set the LEDs to the calculated brightness
+    led1.fill(b1)
+    led2.fill(b2)
     led1.write()
     led2.write()
 
 
 # some initial value for state variables
 num1 = 0
-num2 = 0
+num2 = 2
 direction = ascend
 
 # main loop, ascends and descends the brightness of the two LEDs
@@ -47,10 +71,10 @@ while True:
         time.sleep(0.005)
 
         # roll over the colour when the brightness is at minimum
-        if factor == 1:
-            num1 = (num1 + 1) % 3
-        elif factor == 254:
-            num2 = (num2 + 1) % 3
+        if factor == 0:
+            num1 = (num1 + 1) % len(colours)
+        elif factor == 255:
+            num2 = (num2 + 1) % len(colours)
 
     # use the direction tuples to flip the direction
     direction = descend if direction == ascend else ascend

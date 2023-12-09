@@ -130,7 +130,7 @@ Today we get two RGB LEDs. To keep everything so far I have added the breadboard
 from last year below the pico. I'm installing the RGB LEDs on that breadboard.
 
 To allow this I have connected their GPIO inputs to GPIO27 and GPIO28. These
-are phsical pins 34 and 32. The remaining pins are connected as per the PiHut
+are physical pins 34 and 32. The remaining pins are connected as per the PiHut
 instructions
 [here](https://thepihut.com/blogs/raspberry-pi-tutorials/let-it-glow-maker-advent-calendar-day-6-see-the-rgb)
 
