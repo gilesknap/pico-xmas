@@ -7,4 +7,4 @@ my_morse = translate(message)
 morse_print = " ".join(my_morse)
 print(f"Playing '{message}' {repeat} times.\n{morse_print}")
 
-morse_code(my_morse, 1000)
+morse_code(my_morse, repeat)
